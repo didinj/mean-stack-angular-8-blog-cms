@@ -1,0 +1,34 @@
+<div class="example-container mat-elevation-z8">
+  <div class="example-loading-shade"
+       *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <mat-card class="example-card">
+    <form [formGroup]="registerForm" (ngSubmit)="onFormSubmit(registerForm.value)">
+      <mat-form-field class="example-full-width">
+        <input matInput type="fullName" placeholder="Full Name" formControlName="fullName"
+                [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!registerForm.get('fullName').valid && registerForm.get('fullName').touched">Please enter your Full Name</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput type="email" placeholder="Email" formControlName="username"
+               [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!registerForm.get('username').valid && registerForm.get('username').touched">Please enter your username</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput type="password" placeholder="Password" formControlName="password"
+               [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!registerForm.get('password').valid && registerForm.get('password').touched">Please enter your password</span>
+        </mat-error>
+      </mat-form-field>
+      <div class="button-row">
+        <button type="submit" [disabled]="!registerForm.valid" mat-flat-button color="primary">Register</button>
+      </div>
+    </form>
+  </mat-card>
+</div>

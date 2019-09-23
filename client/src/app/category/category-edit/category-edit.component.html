@@ -1,0 +1,43 @@
+<div class="example-container mat-elevation-z8">
+  <div class="example-loading-shade"
+        *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="button-row">
+    <a mat-flat-button color="primary" (click)="categoryDetails()"><mat-icon>list</mat-icon></a>
+  </div>
+  <mat-card class="example-card">
+    <form [formGroup]="categoryForm" (ngSubmit)="onFormSubmit()">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Category Name" formControlName="catName"
+                [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!categoryForm.get('catName').valid && categoryForm.get('catName').touched">Please enter Category Name</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Category Desc" formControlName="catDesc"
+                [errorStateMatcher]="matcher"></textarea>
+        <mat-error>
+          <span *ngIf="!categoryForm.get('catDesc').valid && categoryForm.get('catDesc').touched">Please enter Category Description</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Category Image URL" formControlName="catImgUrl"
+                [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!categoryForm.get('catImgUrl').valid && categoryForm.get('catImgUrl').touched">Please enter Category Image URL</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <ckeditor matCkeditor placehoder="Category Content" formControlName="catContent"></ckeditor>
+        <mat-error>
+          <span *ngIf="!categoryForm.get('catContent').valid && categoryForm.get('catContent').touched">Please enter Category Description</span>
+        </mat-error>
+      </mat-form-field>
+      <div class="button-row">
+        <button type="submit" [disabled]="!categoryForm.valid" mat-flat-button color="primary"><mat-icon>save</mat-icon></button>
+      </div>
+    </form>
+  </mat-card>
+</div>

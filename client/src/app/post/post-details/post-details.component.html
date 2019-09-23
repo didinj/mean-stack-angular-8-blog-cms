@@ -1,0 +1,29 @@
+<div class="example-container mat-elevation-z8">
+  <div class="example-loading-shade"
+        *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="button-row">
+    <a mat-flat-button color="primary" [routerLink]="['/post']"><mat-icon>list</mat-icon></a>
+  </div>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title><h2>{{post.postTitle}}</h2></mat-card-title>
+      <p>Created by: {{post.postAuthor}}, {{post.created | date}}, updated: {{post.updated | date}}</p>
+      <mat-card-subtitle>{{post.postDesc}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="{{post.postImgUrl}}" alt="{{post.postTitle}}">
+    <mat-card-content>
+      <dl>
+        <dt>Post Content:</dt>
+        <dd [innerHTML]="post.postContent"></dd>
+        <dt>Reference:</dt>
+        <dd>{{post.postReference}}</dd>
+      </dl>
+    </mat-card-content>
+    <mat-card-actions>
+      <a mat-flat-button color="primary" [routerLink]="['/post/edit', post.id]"><mat-icon>edit</mat-icon></a>
+      <a mat-flat-button color="warn" (click)="deletePost(post.id)"><mat-icon>delete</mat-icon></a>
+    </mat-card-actions>
+  </mat-card>
+</div>

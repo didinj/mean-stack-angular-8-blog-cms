@@ -1,0 +1,16 @@
+<mat-toolbar>
+  <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+  <mat-menu #menu="matMenu">
+    <div *ngIf="loginStatus === false">
+      <button mat-menu-item [routerLink]="['/']">Home</button>
+      <button mat-menu-item *ngFor="let cat of categories" [routerLink]="['/bycategory/', cat._id]">{{cat.catName}}</button>
+    </div>
+    <div *ngIf="loginStatus === true">
+      <button mat-menu-item [routerLink]="['/admin']">Home</button>
+      <button mat-menu-item [routerLink]="['/category']">Category</button>
+      <button mat-menu-item [routerLink]="['/post']">Post</button>
+      <button mat-menu-item (click)="logout()">Logout</button>
+    </div>
+  </mat-menu>
+</mat-toolbar>
+<router-outlet></router-outlet>
